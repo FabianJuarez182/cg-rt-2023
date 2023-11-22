@@ -15,7 +15,9 @@
 #include "sphere.h"
 #include "light.h"
 #include "camera.h"
+#include "skybox.h"
 
+Skybox skybox("src/skybox.jpg");
 const int SCREEN_WIDTH = 800;
 const int SCREEN_HEIGHT = 600;
 const float ASPECT_RATIO = static_cast<float>(SCREEN_WIDTH) / static_cast<float>(SCREEN_HEIGHT);
@@ -62,7 +64,8 @@ Color castRay(const glm::vec3& rayOrigin, const glm::vec3& rayDirection, const s
     }
 
     if (!intersect.isIntersecting || recursion == MAX_RECURSION) {
-        return Color(173, 216, 230);
+        glm::vec3 skyboxColor = skybox.getColor(rayDirection);
+        return Color(skyboxColor.r, skyboxColor.g, skyboxColor.b);
     }
 
 
@@ -186,7 +189,7 @@ int main(int argc, char* argv[]) {
     }
 
     // Create a window
-    SDL_Window* window = SDL_CreateWindow("Hello World - FPS: 0", 
+    SDL_Window* window = SDL_CreateWindow("Raycasting - FPS: 0", 
                                           SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 
                                           SCREEN_WIDTH, SCREEN_HEIGHT, 
                                           SDL_WINDOW_SHOWN);
@@ -236,7 +239,13 @@ int main(int argc, char* argv[]) {
                     case SDLK_RIGHT:
                         camera.rotate(1.0f, 0.0f);
                         break;
-                 }
+                    case SDLK_RETURN: //enter
+                        camera.rotate(0.0f, 1.0f);
+                        break;
+                    case SDLK_SPACE:
+                        camera.rotate(0.0f, -1.0f);
+                        break;
+                }
             }
 
 
