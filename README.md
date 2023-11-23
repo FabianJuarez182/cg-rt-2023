@@ -4,7 +4,7 @@
  Creación de un diorama utilizando cubos texturizados y agregando los efectos de raytracing vistos en clase.
 
 ### Navegacion de la pokebola
-![RenderizationTour](Demostration.gif)
+![RenderizationTour](./src/Demostration.gif)
 
 ## Dependencias
 - SLD2: Libreria utilizada para crear ventanas y renderizar graficas.
