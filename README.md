@@ -3,6 +3,12 @@
 ## Descripcion
  Creación de un diorama utilizando cubos texturizados y agregando los efectos de raytracing vistos en clase.
 
+### Navegacion de la pokebola
+![RenderizationTour](Demostration.gif)
+
+## Dependencias
+- SLD2: Libreria utilizada para crear ventanas y renderizar graficas.
+- GLM: Libreria matematica para operaciones con vectores y matrices.
 
 ## Criterios utilizados
 * [30 puntos] Criterio subjetivo. Por qué tan compleja sea su escena
