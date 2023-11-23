@@ -9,6 +9,7 @@
 #include <vector>
 #include <print.h>
 
+#include "cube.h"
 #include "color.h"
 #include "intersect.h"
 #include "object.h"
@@ -102,49 +103,314 @@ Color castRay(const glm::vec3& rayOrigin, const glm::vec3& rayDirection, const s
     Color specularLight = light.color * light.intensity * specLightIntensity * mat.specularAlbedo * shadowIntensity;
     Color color = (diffuseLight + specularLight) * (1.0f - mat.reflectivity - mat.transparency) + reflectedColor * mat.reflectivity + refractedColor * mat.transparency;
     return color;
-} 
-
-void setUp() {
-    Material rubber = {
-        Color(80, 0, 0),   // diffuse
-        0.9,
-        0.1,
-        10.0f,
-        0.0f,
-        0.0f
-    };
-
-    Material ivory = {
-        Color(100, 100, 80),
-        0.5,
-        0.5,
-        50.0f,
-        0.4f,
-        0.0f
-    };
-
-    Material mirror = {
-        Color(255, 255, 255),
-        0.0f,
-        10.0f,
-        1425.0f,
-        0.9f,
-        0.0f
-    };
-
-    Material glass = {
-        Color(255, 255, 255),
-        0.0f,
-        10.0f,
-        1425.0f,
-        0.2f,
-        1.0f,
-    };
-    objects.push_back(new Sphere(glm::vec3(0.0f, 0.0f, 0.0f), 1.0f, rubber));
-    objects.push_back(new Sphere(glm::vec3(-1.0f, 0.0f, -4.0f), 1.0f, ivory));
-    objects.push_back(new Sphere(glm::vec3(1.0f, 0.0f, -4.0f), 1.0f, mirror));
-    objects.push_back(new Sphere(glm::vec3(0.0f, 1.0f, -3.0f), 1.0f, glass));
 }
+
+void setUpPokeball() {
+    // Parte roja de la Pokébola
+    Material red = {
+        Color(255, 0, 0),
+        1.0,
+        0.0,
+        9.0f,
+        0.0f,
+        0.0f
+    };
+
+ // Añadir cubos para la parte blanca
+        //primer circulo
+    objects.push_back(new Cube(glm::vec3(0.0f, 0.2f, -0.1f), 0.1f, red));//esquina frente
+    objects.push_back(new Cube(glm::vec3(0.1f, 0.2f, -0.1f), 0.1f, red));//esquina frente
+    objects.push_back(new Cube(glm::vec3(-0.1f, 0.2f, -0.1f), 0.1f, red));//esquina frente
+    objects.push_back(new Cube(glm::vec3(-0.2f, 0.1f, -0.1f), 0.1f, red));
+    objects.push_back(new Cube(glm::vec3(-0.3f, 0.1f, -0.2f), 0.1f, red));
+    objects.push_back(new Cube(glm::vec3(-0.4f, 0.1f, -0.3f), 0.1f, red));
+    objects.push_back(new Cube(glm::vec3(-0.5f, 0.1f, -0.4f), 0.1f, red));
+    objects.push_back(new Cube(glm::vec3(-0.6f, 0.1f, -0.5f), 0.1f, red));//esquina izquierda
+    objects.push_back(new Cube(glm::vec3(-0.6f, 0.1f, -0.6f), 0.1f, red));//esquina izquierda
+    objects.push_back(new Cube(glm::vec3(-0.5f, 0.1f, -0.7f), 0.1f, red));
+    objects.push_back(new Cube(glm::vec3(-0.4f, 0.1f, -0.8f), 0.1f, red));
+    objects.push_back(new Cube(glm::vec3(-0.3f, 0.1f, -0.9f), 0.1f, red));
+    objects.push_back(new Cube(glm::vec3(-0.2f, 0.1f, -1.0f), 0.1f, red));
+    objects.push_back(new Cube(glm::vec3(-0.1f, 0.1f, -1.1f), 0.1f, red));
+    objects.push_back(new Cube(glm::vec3(0.0f, 0.1f, -1.2f), 0.1f, red));//esquina trasera
+    objects.push_back(new Cube(glm::vec3(0.1f, 0.1f, -1.1f), 0.1f, red));
+    objects.push_back(new Cube(glm::vec3(0.2f, 0.1f, -1.0f), 0.1f, red));
+    objects.push_back(new Cube(glm::vec3(0.3f, 0.1f, -0.9f), 0.1f, red));
+    objects.push_back(new Cube(glm::vec3(0.4f, 0.1f, -0.8f), 0.1f, red));
+    objects.push_back(new Cube(glm::vec3(0.5f, 0.1f, -0.7f), 0.1f, red));
+    objects.push_back(new Cube(glm::vec3(0.6f, 0.1f, -0.6f), 0.1f, red));//esquina derecha
+    objects.push_back(new Cube(glm::vec3(0.6f, 0.1f, -0.5f), 0.1f, red));//esquina derecha
+    objects.push_back(new Cube(glm::vec3(0.5f, 0.1f, -0.4f), 0.1f, red));
+    objects.push_back(new Cube(glm::vec3(0.4f, 0.1f, -0.3f), 0.1f, red));
+    objects.push_back(new Cube(glm::vec3(0.3f, 0.1f, -0.2f), 0.1f, red));
+    objects.push_back(new Cube(glm::vec3(0.2f, 0.1f, -0.1f), 0.1f, red));
+    objects.push_back(new Cube(glm::vec3(0.0f, 0.3f, -0.2f), 0.1f, red));//esquina frente
+    objects.push_back(new Cube(glm::vec3(0.1f, 0.3f, -0.2f), 0.1f, red));//esquina frente
+    objects.push_back(new Cube(glm::vec3(-0.1f, 0.3f, -0.2f), 0.1f, red));//esquina frente
+    objects.push_back(new Cube(glm::vec3(-0.2f, 0.3f, -0.3f), 0.1f, red));//esquina
+    objects.push_back(new Cube(glm::vec3(0.2f, 0.3f, -0.3f), 0.1f, red)); //esquina
+    objects.push_back(new Cube(glm::vec3(0.0f, 0.4f, -0.3f), 0.1f, red));//esquina frente
+    objects.push_back(new Cube(glm::vec3(0.1f, 0.4f, -0.3f), 0.1f, red));//esquina frente
+    objects.push_back(new Cube(glm::vec3(-0.1f, 0.4f, -0.3f), 0.1f, red));//esquina frente
+        // final de abajo
+    objects.push_back(new Cube(glm::vec3(0.0f, 0.6f, -0.6f), 0.1f, red));//esquina frente
+    objects.push_back(new Cube(glm::vec3(0.1f, 0.6f, -0.6f), 0.1f, red));//esquina frente
+    objects.push_back(new Cube(glm::vec3(-0.1f, 0.6f, -0.6f), 0.1f, red));//esquina frente
+        // penultimo
+    objects.push_back(new Cube(glm::vec3(0.0f, 0.6f, -0.5f), 0.1f, red));//esquina frente
+    objects.push_back(new Cube(glm::vec3(0.1f, 0.6f, -0.5f), 0.1f, red));//esquina frente
+    objects.push_back(new Cube(glm::vec3(-0.1f, 0.6f, -0.5f), 0.1f, red));//esquina frente
+    objects.push_back(new Cube(glm::vec3(0.0f, 0.5f, -0.7f), 0.1f, red));//esquina frente
+    objects.push_back(new Cube(glm::vec3(0.1f, 0.5f, -0.7f), 0.1f, red));//esquina frente
+    objects.push_back(new Cube(glm::vec3(-0.1f, 0.5f, -0.7f), 0.1f, red));//esquina frente
+    objects.push_back(new Cube(glm::vec3(0.2f, 0.5f, -0.6f), 0.1f, red));//esquina derecha
+    objects.push_back(new Cube(glm::vec3(0.2f, 0.5f, -0.5f), 0.1f, red));//esquina derecha
+    objects.push_back(new Cube(glm::vec3(-0.2f, 0.5f, -0.5f), 0.1f, red));//esquina izquierda
+    objects.push_back(new Cube(glm::vec3(-0.2f, 0.5f, -0.6f), 0.1f, red));//esquina izquierda
+        //antepenultimo
+
+    objects.push_back(new Cube(glm::vec3(0.2f,0.4f, -0.4f), 0.1f, red));//esquina cruzada
+    objects.push_back(new Cube(glm::vec3(0.0f, 0.5f, -0.4f), 0.1f, red));//esquina frente
+    objects.push_back(new Cube(glm::vec3(0.1f, 0.5f, -0.4f), 0.1f, red));//esquina frente
+    objects.push_back(new Cube(glm::vec3(-0.1f, 0.5f, -0.4f), 0.1f, red));//esquina frente
+    objects.push_back(new Cube(glm::vec3(0.2f, 0.4f, -0.7f), 0.1f, red));//esquina cruzada
+    objects.push_back(new Cube(glm::vec3(0.0f, 0.4f, -0.8f), 0.1f, red));//trasero
+    objects.push_back(new Cube(glm::vec3(0.1f, 0.4f, -0.8f), 0.1f, red));//trasero
+    objects.push_back(new Cube(glm::vec3(-0.1f, 0.4f, -0.8f), 0.1f, red));//trasero
+    objects.push_back(new Cube(glm::vec3(-0.2f, 0.4f, -0.7f), 0.1f, red));//esquina cruzada
+    objects.push_back(new Cube(glm::vec3(0.3f, 0.4f, -0.6f), 0.1f, red));//esquina derecha
+    objects.push_back(new Cube(glm::vec3(0.3f, 0.4f, -0.5f), 0.1f, red));//esquina derecha
+    objects.push_back(new Cube(glm::vec3(-0.2f, 0.4f, -0.4f), 0.1f, red));//esquina cruzada
+    objects.push_back(new Cube(glm::vec3(-0.3f, 0.4f, -0.5f), 0.1f, red));//esquina izquierda
+    objects.push_back(new Cube(glm::vec3(-0.3f, 0.4f, -0.6f), 0.1f, red));//esquina izquierda
+
+        //anteantepenultimo
+    objects.push_back(new Cube(glm::vec3(0.0f, 0.6f, -0.6f), 0.1f, red));//esquina frente
+    objects.push_back(new Cube(glm::vec3(0.1f, 0.6f, -0.6f), 0.1f, red));//esquina frente
+    objects.push_back(new Cube(glm::vec3(-0.1f, 0.6f, -0.6f), 0.1f, red));//esquina frente
+    objects.push_back(new Cube(glm::vec3(-0.2f, 0.4f, -0.3f), 0.1f, red));//esquina cruzada adelante
+    objects.push_back(new Cube(glm::vec3(0.2f, 0.4f, -0.3f), 0.1f, red));//esquina cruzada adelante
+    objects.push_back(new Cube(glm::vec3(-0.3f, 0.4f, -0.4f), 0.1f, red));//esquina cruzada adelante
+    objects.push_back(new Cube(glm::vec3(0.3f, 0.4f, -0.4f), 0.1f, red));//esquina cruzada adelante
+    objects.push_back(new Cube(glm::vec3(0.4f, 0.3f, -0.6f), 0.1f, red));//esquina derecha
+    objects.push_back(new Cube(glm::vec3(0.4f, 0.3f, -0.5f), 0.1f, red));//esquina derecha
+    objects.push_back(new Cube(glm::vec3(0.0f, 0.3f, -0.9f), 0.1f, red));//esquina atras
+    objects.push_back(new Cube(glm::vec3(0.1f, 0.3f, -0.9f), 0.1f, red));//esquina atras
+    objects.push_back(new Cube(glm::vec3(-0.1f, 0.3f, -0.9f), 0.1f, red));//esquina atras
+    objects.push_back(new Cube(glm::vec3(-0.2f, 0.4f, -0.4f), 0.1f, red));//esquina cruzada
+    objects.push_back(new Cube(glm::vec3(-0.4f, 0.3f, -0.5f), 0.1f, red));//esquina izquierda
+    objects.push_back(new Cube(glm::vec3(-0.4f, 0.3f, -0.6f), 0.1f, red));//esquina izquierda
+    objects.push_back(new Cube(glm::vec3(-0.2f, 0.4f, -0.8f), 0.1f, red));//esquina cruzada adelante
+    objects.push_back(new Cube(glm::vec3(0.2f, 0.4f, -0.8f), 0.1f, red));//esquina cruzada adelante
+    objects.push_back(new Cube(glm::vec3(-0.3f, 0.4f, -0.7f), 0.1f, red));//esquina cruzada adelante
+    objects.push_back(new Cube(glm::vec3(0.3f, 0.4f, -0.7f), 0.1f, red));//esquina cruzada adelante
+    objects.push_back(new Cube(glm::vec3(0.2f, 0.3f, -0.3f), 0.1f, red));//esquina cruzada adelante
+    objects.push_back(new Cube(glm::vec3(0.4f, 0.3f, -0.4f), 0.1f, red));//esquina cruzada adelante
+        //primer circulo
+    objects.push_back(new Cube(glm::vec3(0.0f, 0.5f, -0.4f), 0.1f, red));//esquina frente
+    objects.push_back(new Cube(glm::vec3(0.1f, 0.5f, -0.4f), 0.1f, red));//esquina frente
+    objects.push_back(new Cube(glm::vec3(-0.1f, 0.5f, -0.4f), 0.1f, red));//esquina frente
+    objects.push_back(new Cube(glm::vec3(0.5f, 0.2f, -0.6f), 0.1f, red));//esquina derecha
+    objects.push_back(new Cube(glm::vec3(0.5f, 0.2f, -0.5f), 0.1f, red));//esquina derecha
+    objects.push_back(new Cube(glm::vec3(0.0f, 0.2f, -1.0f), 0.1f, red));//esquina atras
+    objects.push_back(new Cube(glm::vec3(0.1f, 0.2f, -1.0f), 0.1f, red));//esquina atras
+    objects.push_back(new Cube(glm::vec3(-0.1f, 0.2f, -1.0f), 0.1f, red));//esquina atras
+    objects.push_back(new Cube(glm::vec3(-0.5f, 0.2f, -0.5f), 0.1f, red));//esquina izquierda
+    objects.push_back(new Cube(glm::vec3(-0.5f, 0.2f, -0.6f), 0.1f, red));//esquina izquierda
+    objects.push_back(new Cube(glm::vec3(-0.4f, 0.2f, -0.4f), 0.1f, red));//esquina cruzada adelante
+    objects.push_back(new Cube(glm::vec3(0.4f, 0.2f, -0.4f), 0.1f, red));//esquina cruzada adelante
+    objects.push_back(new Cube(glm::vec3(-0.3f, 0.2f, -0.3f), 0.1f, red));//esquina cruzada adelante
+    objects.push_back(new Cube(glm::vec3(0.3f, 0.2f, -0.3f), 0.1f, red));//esquina cruzada adelante
+    objects.push_back(new Cube(glm::vec3(-0.2f, 0.2f, -0.2f), 0.1f, red));//esquina cruzada adelante
+    objects.push_back(new Cube(glm::vec3(0.2f, 0.2f, -0.2f), 0.1f, red));//esquina cruzada adelante
+    objects.push_back(new Cube(glm::vec3(-0.3f, 0.3f, -0.3f), 0.1f, red));//esquina cruzada adelante
+    objects.push_back(new Cube(glm::vec3(0.3f, 0.3f, -0.3f), 0.1f, red));//esquina cruzada adelante
+    objects.push_back(new Cube(glm::vec3(-0.3f, 0.3f, -0.4f), 0.1f, red));//esquina cruzada adelante
+    objects.push_back(new Cube(glm::vec3(0.3f, 0.3f, -0.4f), 0.1f, red));//esquina cruzada adelante
+
+    // Parte negra de la Pokébola
+    Material black = {
+        Color(0, 0, 0),
+        1.0,
+        0.0,
+        9.0f,
+        0.0f,
+        0.0f
+    };
+
+    // Añadir cubos para la parte negra
+        //circulo central
+    objects.push_back(new Cube(glm::vec3(-0.1f, 0.0f, 0.0f), 0.1f, black));
+    objects.push_back(new Cube(glm::vec3(0.1f, 0.0f, 0.0f), 0.1f, black));
+    objects.push_back(new Cube(glm::vec3(0.0f, -0.1f, 0.0f), 0.1f, black));
+    objects.push_back(new Cube(glm::vec3(0.0f, 0.1f, 0.0f), 0.1f, black));
+    objects.push_back(new Cube(glm::vec3(0.1f, 0.1f, 0.0f), 0.1f, black));
+    objects.push_back(new Cube(glm::vec3(-0.1f, -0.1f, 0.0f), 0.1f, black));
+    objects.push_back(new Cube(glm::vec3(0.1f, -0.1f, 0.0f), 0.1f, black));
+    objects.push_back(new Cube(glm::vec3(-0.1f, 0.1f, 0.0f), 0.1f, black));
+    //contorno pokebola
+    objects.push_back(new Cube(glm::vec3(0.2f, 0.0f, -0.1f), 0.1f, black)); 
+    objects.push_back(new Cube(glm::vec3(0.3f, 0.0f, -0.2f), 0.1f, black));
+    objects.push_back(new Cube(glm::vec3(0.4f, 0.0f, -0.3f), 0.1f, black));
+    objects.push_back(new Cube(glm::vec3(0.5f, 0.0f, -0.4f), 0.1f, black));
+    objects.push_back(new Cube(glm::vec3(0.6f, 0.0f, -0.5f), 0.1f, black));
+    objects.push_back(new Cube(glm::vec3(0.6f, 0.0f, -0.6f), 0.1f, black));
+    objects.push_back(new Cube(glm::vec3(0.5f, 0.0f, -0.7f), 0.1f, black));
+    objects.push_back(new Cube(glm::vec3(0.4f, 0.0f, -0.8f), 0.1f, black));
+    objects.push_back(new Cube(glm::vec3(0.3f, 0.0f, -0.9f), 0.1f, black));
+    objects.push_back(new Cube(glm::vec3(0.2f, 0.0f, -1.0f), 0.1f, black));
+    objects.push_back(new Cube(glm::vec3(0.1f, 0.0f, -1.1f), 0.1f, black));
+    objects.push_back(new Cube(glm::vec3(0.0f, 0.0f, -1.2f), 0.1f, black)); //esquina trasera
+    objects.push_back(new Cube(glm::vec3(-0.1f, 0.0f, -1.1f), 0.1f, black));
+    objects.push_back(new Cube(glm::vec3(-0.2f, 0.0f, -1.0f), 0.1f, black));
+    objects.push_back(new Cube(glm::vec3(-0.3f, 0.0f, -0.9f), 0.1f, black));
+    objects.push_back(new Cube(glm::vec3(-0.4f, 0.0f, -0.8f), 0.1f, black));
+    objects.push_back(new Cube(glm::vec3(-0.5f, 0.0f, -0.7f), 0.1f, black));
+    objects.push_back(new Cube(glm::vec3(-0.6f, 0.0f, -0.6f), 0.1f, black));//esquina izquierda
+    objects.push_back(new Cube(glm::vec3(-0.6f, 0.0f, -0.5f), 0.1f, black));//esquina izquierda
+    objects.push_back(new Cube(glm::vec3(-0.5f, 0.0f, -0.4f), 0.1f, black));
+    objects.push_back(new Cube(glm::vec3(-0.4f, 0.0f, -0.3f), 0.1f, black));
+    objects.push_back(new Cube(glm::vec3(-0.3f, 0.0f, -0.2f), 0.1f, black));
+    objects.push_back(new Cube(glm::vec3(-0.2f, 0.0f, -0.1f), 0.1f, black));
+
+
+    Material white = {
+    Color(255, 255, 255),  // Color blanco
+    1.0,                    // Coeficiente de reflexión difusa
+    0.0,                    // Coeficiente de reflexión especular
+    9.0f,                   // Exponente especular
+    0.0f,                   // Transmitancia
+    0.0f                    // Índice de refracción
+    };
+
+    // Añadir cubos para la parte blanca
+        //primer circulo
+    objects.push_back(new Cube(glm::vec3(0.0f, -0.2f, -0.1f), 0.1f, white));//esquina frente
+    objects.push_back(new Cube(glm::vec3(0.1f, -0.2f, -0.1f), 0.1f, white));//esquina frente
+    objects.push_back(new Cube(glm::vec3(-0.1f, -0.2f, -0.1f), 0.1f, white));//esquina frente
+    objects.push_back(new Cube(glm::vec3(-0.2f, -0.1f, -0.1f), 0.1f, white));
+    objects.push_back(new Cube(glm::vec3(-0.3f, -0.1f, -0.2f), 0.1f, white));
+    objects.push_back(new Cube(glm::vec3(-0.4f, -0.1f, -0.3f), 0.1f, white));
+    objects.push_back(new Cube(glm::vec3(-0.5f, -0.1f, -0.4f), 0.1f, white));
+    objects.push_back(new Cube(glm::vec3(-0.6f, -0.1f, -0.5f), 0.1f, white));//esquina izquierda
+    objects.push_back(new Cube(glm::vec3(-0.6f, -0.1f, -0.6f), 0.1f, white));//esquina izquierda
+    objects.push_back(new Cube(glm::vec3(-0.5f, -0.1f, -0.7f), 0.1f, white));
+    objects.push_back(new Cube(glm::vec3(-0.4f, -0.1f, -0.8f), 0.1f, white));
+    objects.push_back(new Cube(glm::vec3(-0.3f, -0.1f, -0.9f), 0.1f, white));
+    objects.push_back(new Cube(glm::vec3(-0.2f, -0.1f, -1.0f), 0.1f, white));
+    objects.push_back(new Cube(glm::vec3(-0.1f, -0.1f, -1.1f), 0.1f, white));
+    objects.push_back(new Cube(glm::vec3(0.0f, -0.1f, -1.2f), 0.1f, white));//esquina trasera
+    objects.push_back(new Cube(glm::vec3(0.1f, -0.1f, -1.1f), 0.1f, white));
+    objects.push_back(new Cube(glm::vec3(0.2f, -0.1f, -1.0f), 0.1f, white));
+    objects.push_back(new Cube(glm::vec3(0.3f, -0.1f, -0.9f), 0.1f, white));
+    objects.push_back(new Cube(glm::vec3(0.4f, -0.1f, -0.8f), 0.1f, white));
+    objects.push_back(new Cube(glm::vec3(0.5f, -0.1f, -0.7f), 0.1f, white));
+    objects.push_back(new Cube(glm::vec3(0.6f, -0.1f, -0.6f), 0.1f, white));//esquina derecha
+    objects.push_back(new Cube(glm::vec3(0.6f, -0.1f, -0.5f), 0.1f, white));//esquina derecha
+    objects.push_back(new Cube(glm::vec3(0.5f, -0.1f, -0.4f), 0.1f, white));
+    objects.push_back(new Cube(glm::vec3(0.4f, -0.1f, -0.3f), 0.1f, white));
+    objects.push_back(new Cube(glm::vec3(0.3f, -0.1f, -0.2f), 0.1f, white));
+    objects.push_back(new Cube(glm::vec3(0.2f, -0.1f, -0.1f), 0.1f, white));
+    objects.push_back(new Cube(glm::vec3(0.0f, -0.3f, -0.2f), 0.1f, white));//esquina frente
+    objects.push_back(new Cube(glm::vec3(0.1f, -0.3f, -0.2f), 0.1f, white));//esquina frente
+    objects.push_back(new Cube(glm::vec3(-0.1f, -0.3f, -0.2f), 0.1f, white));//esquina frente
+    objects.push_back(new Cube(glm::vec3(-0.2f, -0.3f, -0.3f), 0.1f, white));//esquina
+    objects.push_back(new Cube(glm::vec3(0.2f, -0.3f, -0.3f), 0.1f, white)); //esquina
+    objects.push_back(new Cube(glm::vec3(0.0f, -0.4f, -0.3f), 0.1f, white));//esquina frente
+    objects.push_back(new Cube(glm::vec3(0.1f, -0.4f, -0.3f), 0.1f, white));//esquina frente
+    objects.push_back(new Cube(glm::vec3(-0.1f, -0.4f, -0.3f), 0.1f, white));//esquina frente
+        // final de abajo
+    objects.push_back(new Cube(glm::vec3(0.0f, -0.6f, -0.6f), 0.1f, white));//esquina frente
+    objects.push_back(new Cube(glm::vec3(0.1f, -0.6f, -0.6f), 0.1f, white));//esquina frente
+    objects.push_back(new Cube(glm::vec3(-0.1f, -0.6f, -0.6f), 0.1f, white));//esquina frente
+        // penultimo
+    objects.push_back(new Cube(glm::vec3(0.0f, -0.6f, -0.5f), 0.1f, white));//esquina frente
+    objects.push_back(new Cube(glm::vec3(0.1f, -0.6f, -0.5f), 0.1f, white));//esquina frente
+    objects.push_back(new Cube(glm::vec3(-0.1f, -0.6f, -0.5f), 0.1f, white));//esquina frente
+    objects.push_back(new Cube(glm::vec3(0.0f, -0.5f, -0.7f), 0.1f, white));//esquina frente
+    objects.push_back(new Cube(glm::vec3(0.1f, -0.5f, -0.7f), 0.1f, white));//esquina frente
+    objects.push_back(new Cube(glm::vec3(-0.1f, -0.5f, -0.7f), 0.1f, white));//esquina frente
+    objects.push_back(new Cube(glm::vec3(0.2f, -0.5f, -0.6f), 0.1f, white));//esquina derecha
+    objects.push_back(new Cube(glm::vec3(0.2f, -0.5f, -0.5f), 0.1f, white));//esquina derecha
+    objects.push_back(new Cube(glm::vec3(-0.2f, -0.5f, -0.5f), 0.1f, white));//esquina izquierda
+    objects.push_back(new Cube(glm::vec3(-0.2f, -0.5f, -0.6f), 0.1f, white));//esquina izquierda
+        //antepenultimo
+
+    objects.push_back(new Cube(glm::vec3(0.2f,-0.4f, -0.4f), 0.1f, white));//esquina cruzada
+    objects.push_back(new Cube(glm::vec3(0.0f, -0.5f, -0.4f), 0.1f, white));//esquina frente
+    objects.push_back(new Cube(glm::vec3(0.1f, -0.5f, -0.4f), 0.1f, white));//esquina frente
+    objects.push_back(new Cube(glm::vec3(-0.1f, -0.5f, -0.4f), 0.1f, white));//esquina frente
+    objects.push_back(new Cube(glm::vec3(0.2f,-0.4f, -0.7f), 0.1f, white));//esquina cruzada
+    objects.push_back(new Cube(glm::vec3(0.0f, -0.4f, -0.8f), 0.1f, white));//trasero
+    objects.push_back(new Cube(glm::vec3(0.1f, -0.4f, -0.8f), 0.1f, white));//trasero
+    objects.push_back(new Cube(glm::vec3(-0.1f, -0.4f, -0.8f), 0.1f, white));//trasero
+    objects.push_back(new Cube(glm::vec3(-0.2f,-0.4f, -0.7f), 0.1f, white));//esquina cruzada
+    objects.push_back(new Cube(glm::vec3(0.3f, -0.4f, -0.6f), 0.1f, white));//esquina derecha
+    objects.push_back(new Cube(glm::vec3(0.3f, -0.4f, -0.5f), 0.1f, white));//esquina derecha
+    objects.push_back(new Cube(glm::vec3(-0.2f,-0.4f, -0.4f), 0.1f, white));//esquina cruzada
+    objects.push_back(new Cube(glm::vec3(-0.3f, -0.4f, -0.5f), 0.1f, white));//esquina izquierda
+    objects.push_back(new Cube(glm::vec3(-0.3f, -0.4f, -0.6f), 0.1f, white));//esquina izquierda
+
+        //anteantepenultimo
+    objects.push_back(new Cube(glm::vec3(0.0f, -0.6f, -0.6f), 0.1f, white));//esquina frente
+    objects.push_back(new Cube(glm::vec3(0.1f, -0.6f, -0.6f), 0.1f, white));//esquina frente
+    objects.push_back(new Cube(glm::vec3(-0.1f, -0.6f, -0.6f), 0.1f, white));//esquina frente
+    objects.push_back(new Cube(glm::vec3(-0.2f,-0.4f, -0.3f), 0.1f, white));//esquina cruzada adelante
+    objects.push_back(new Cube(glm::vec3(0.2f,-0.4f, -0.3f), 0.1f, white));//esquina cruzada adelante
+    objects.push_back(new Cube(glm::vec3(-0.3f,-0.4f, -0.4f), 0.1f, white));//esquina cruzada adelante
+    objects.push_back(new Cube(glm::vec3(0.3f,-0.4f, -0.4f), 0.1f, white));//esquina cruzada adelante
+    objects.push_back(new Cube(glm::vec3(0.4f, -0.3f, -0.6f), 0.1f, white));//esquina derecha
+    objects.push_back(new Cube(glm::vec3(0.4f, -0.3f, -0.5f), 0.1f, white));//esquina derecha
+    objects.push_back(new Cube(glm::vec3(0.0f, -0.3f, -0.9f), 0.1f, white));//esquina atras
+    objects.push_back(new Cube(glm::vec3(0.1f, -0.3f, -0.9f), 0.1f, white));//esquina atras
+    objects.push_back(new Cube(glm::vec3(-0.1f, -0.3f, -0.9f), 0.1f, white));//esquina atras
+    objects.push_back(new Cube(glm::vec3(-0.2f,-0.4f, -0.4f), 0.1f, white));//esquina cruzada
+    objects.push_back(new Cube(glm::vec3(-0.4f, -0.3f, -0.5f), 0.1f, white));//esquina izquierda
+    objects.push_back(new Cube(glm::vec3(-0.4f, -0.3f, -0.6f), 0.1f, white));//esquina izquierda
+    objects.push_back(new Cube(glm::vec3(-0.2f,-0.4f, -0.8f), 0.1f, white));//esquina cruzada adelante
+    objects.push_back(new Cube(glm::vec3(0.2f,-0.4f, -0.8f), 0.1f, white));//esquina cruzada adelante
+    objects.push_back(new Cube(glm::vec3(-0.3f,-0.4f, -0.7f), 0.1f, white));//esquina cruzada adelante
+    objects.push_back(new Cube(glm::vec3(0.3f,-0.4f, -0.7f), 0.1f, white));//esquina cruzada adelante
+    objects.push_back(new Cube(glm::vec3(0.2f,-0.3f, -0.3f), 0.1f, white));//esquina cruzada adelante
+    objects.push_back(new Cube(glm::vec3(0.4f,-0.3f, -0.4f), 0.1f, white));//esquina cruzada adelante
+        //primer circulo
+    objects.push_back(new Cube(glm::vec3(0.0f, -0.5f, -0.4f), 0.1f, white));//esquina frente
+    objects.push_back(new Cube(glm::vec3(0.1f, -0.5f, -0.4f), 0.1f, white));//esquina frente
+    objects.push_back(new Cube(glm::vec3(-0.1f, -0.5f, -0.4f), 0.1f, white));//esquina frente
+    objects.push_back(new Cube(glm::vec3(0.5f, -0.2f, -0.6f), 0.1f, white));//esquina derecha
+    objects.push_back(new Cube(glm::vec3(0.5f, -0.2f, -0.5f), 0.1f, white));//esquina derecha
+    objects.push_back(new Cube(glm::vec3(0.0f, -0.2f, -1.0f), 0.1f, white));//esquina atras
+    objects.push_back(new Cube(glm::vec3(0.1f, -0.2f, -1.0f), 0.1f, white));//esquina atras
+    objects.push_back(new Cube(glm::vec3(-0.1f, -0.2f, -1.0f), 0.1f, white));//esquina atras
+    objects.push_back(new Cube(glm::vec3(-0.5f, -0.2f, -0.5f), 0.1f, white));//esquina izquierda
+    objects.push_back(new Cube(glm::vec3(-0.5f, -0.2f, -0.6f), 0.1f, white));//esquina izquierda
+    objects.push_back(new Cube(glm::vec3(-0.4f,-0.2f, -0.4f), 0.1f, white));//esquina cruzada adelante
+    objects.push_back(new Cube(glm::vec3(0.4f,-0.2f, -0.4f), 0.1f, white));//esquina cruzada adelante
+    objects.push_back(new Cube(glm::vec3(-0.3f,-0.2f, -0.3f), 0.1f, white));//esquina cruzada adelante
+    objects.push_back(new Cube(glm::vec3(0.3f,-0.2f, -0.3f), 0.1f, white));//esquina cruzada adelante
+    objects.push_back(new Cube(glm::vec3(-0.2f,-0.2f, -0.2f), 0.1f, white));//esquina cruzada adelante
+    objects.push_back(new Cube(glm::vec3(0.2f,-0.2f, -0.2f), 0.1f, white));//esquina cruzada adelante
+    objects.push_back(new Cube(glm::vec3(-0.3f,-0.3f, -0.3f), 0.1f, white));//esquina cruzada adelante
+    objects.push_back(new Cube(glm::vec3(0.3f,-0.3f, -0.3f), 0.1f, white));//esquina cruzada adelante
+    objects.push_back(new Cube(glm::vec3(-0.3f,-0.3f, -0.4f), 0.1f, white));//esquina cruzada adelante
+    objects.push_back(new Cube(glm::vec3(0.3f,-0.3f, -0.4f), 0.1f, white));//esquina cruzada adelante
+
+
+
+
+    Material grey = {
+    Color(128, 128, 128),  // Color gris
+    1.0,                    // Coeficiente de reflexión difusa
+    0.5,                    // Coeficiente de reflexión especular
+    9.0f,                   // Exponente especular
+    0.0f,                   // Transmitancia
+    0.5f                    // Índice de refracción
+};
+    objects.push_back(new Cube(glm::vec3(0.0f, 0.0f, 0.0f), 0.1f, grey));
+
+
+}
+
 
 void render() {
     float fov = 3.1415/3;
@@ -217,7 +483,7 @@ int main(int argc, char* argv[]) {
     Uint32 startTime = SDL_GetTicks();
     Uint32 currentTime = startTime;
     
-    setUp();
+    setUpPokeball();
 
     while (running) {
         while (SDL_PollEvent(&event)) {
@@ -265,7 +531,7 @@ int main(int argc, char* argv[]) {
         // Calculate and display FPS
         if (SDL_GetTicks() - currentTime >= 1000) {
             currentTime = SDL_GetTicks();
-            std::string title = "Hello World - FPS: " + std::to_string(frameCount);
+            std::string title = "Raycasting  - FPS: " + std::to_string(frameCount);
             SDL_SetWindowTitle(window, title.c_str());
             frameCount = 0;
         }
